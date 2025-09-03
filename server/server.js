@@ -13,8 +13,6 @@ app.get('/', (req, res) => {
 });
 
 mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
 })
 .then(() => console.log('Database connected successfully!'))
 .catch((err) => console.error('Database connection failed: ', err));

@@ -52,4 +52,34 @@ const getFeedPosts = async (req, res) => {
     }
 }
 
-module.exports = {createPost, getFeedPosts}
+
+const toggleLike = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.postId);
+        const userId = req.user._id;
+
+        const isLiked = post.likes.includes(userId);
+        
+        const update = isLiked 
+            ? { $pull: { likes: userId } } // If liked, unlike it
+            : { $addToSet: { likes: userId } }; // If not liked, like it
+
+        const updatedPost = await Post.findByIdAndUpdate(
+            req.params.postId,
+            update,
+            { new: true }
+        ).populate('likes', 'username');
+
+        res.json({
+            success: true,
+            message: isLiked ? 'Post unliked' : 'Post liked',
+            data: updatedPost
+        });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: 'Server error' });
+    }
+};
+
+module.exports = {createPost, getFeedPosts, toggleLike}

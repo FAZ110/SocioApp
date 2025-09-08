@@ -72,7 +72,7 @@ const loginUser = async (req, res) => {
         const isPasswordValid = await user.comparePassword(password);
 
         if(!isPasswordValid){
-            return res.statur(401).json({
+            return res.status(401).json({
                 success: false,
                 message: 'Invalid password'
             });

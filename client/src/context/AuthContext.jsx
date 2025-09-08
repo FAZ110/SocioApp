@@ -8,17 +8,21 @@ export const AuthProvider = ({children}) => {
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
+        console.log('AuthContext mounting')
         checkAuthStatus()
     }, [])
 
     const checkAuthStatus = async () => {
         try {
             const token = localStorage.getItem('token')
+            console.log('Token found in local storage:', !!token)
             if(token){
                 setUser({token})
+                console.log('user set in context with token')
             }
         } catch (error) {
             console.error('Auth check failed: ', error)
+            console.log('Auth check complete, isLoading set to false')
             logout()
             
         }finally{
@@ -42,7 +46,7 @@ export const AuthProvider = ({children}) => {
         isLoading,
         login,
         logout,
-        loggedIn : !!user
+        isLoggedIn : !!user
     }
 
     return (

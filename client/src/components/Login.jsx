@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import API from '../api/api';
 import '../styles/login.css'
 
@@ -12,6 +13,7 @@ function Login() {
     const [isLoading, setIsLoading] = useState(false);
     
     const { login } = useAuth(); // Get login function from context
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,8 +26,7 @@ function Login() {
             // Use the context login function instead of managing localStorage directly
             login(response.data.data.user, response.data.data.token);
             
-            // Redirect to feed
-            window.location.href = '/feed';
+            navigate('/feed')
             
         } catch (error) {
             setError(error.response?.data?.message || 'Login failed');
@@ -34,22 +35,35 @@ function Login() {
         }
     };
 
+    const handleChange = (e) =>{
+        setFormData({
+            ...formData,[e.target.name]: e.target.value
+        })
+    }
+
     return (
         <div className="login-container">
             <form onSubmit={handleSubmit}>
                 <input
                     type="email"
+                    id='email'
+                    name='email'
                     placeholder="Email"
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    onChange={handleChange}
                     required
+                    disabled={isLoading}
                 />
                 <input
                     type="password"
+                    id='password'
+                    name='password'
                     placeholder="Password"
                     value={formData.password}
-                    onChange={(e) => setFormData({...formData, password: e.target.value})}
+                    onChange={handleChange}
                     required
+                    disabled={isLoading}
+
                 />
                 <button type="submit" disabled={isLoading} className='login-btn'>
                     {isLoading ? 'Logging in...' : 'Login'}

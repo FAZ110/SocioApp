@@ -23,7 +23,7 @@ form{
     gap: 10px;
 }
 
-input{
+.login-inp{
     padding: 10px 15px;
     font-size: 18px;
     border-radius: 5px;

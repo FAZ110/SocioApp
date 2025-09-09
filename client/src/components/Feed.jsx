@@ -14,6 +14,7 @@ function Feed(){
     }, []);
 
     const fetchPosts = async () => {
+    
         try {
             const response = await API.get('/posts')
             setPosts(response.data.data)
@@ -29,9 +30,9 @@ function Feed(){
 
     const handlePostUpdate = (updatedPost) => {
         setPosts(prevPosts => 
-            prevPosts.map(post =>{
+            prevPosts.map(post =>
                 post._id === updatedPost._id ? updatedPost : post 
-            })
+            )
         )
     }
 
@@ -40,6 +41,11 @@ function Feed(){
 
     if (error) return <div className="feed-error">{error}</div>
 
+    if(!Array.isArray(posts)){
+        return <div className="feed-error">Error: Posts data is invalid</div>
+    }
+
+    const validPosts = posts.filter(post => post && post._id)
     return(
         <div className="feed">
             {!isLoggedIn && (
@@ -54,11 +60,11 @@ function Feed(){
                 </div>
             ):(
                 <div className="posts-list">
-                    {posts.map(post => (
+                    {validPosts.map(post => (post && post._id ?(
                         <Post key={post._id}
                             post={post}
                             onUpdate={handlePostUpdate}/>
-                        ))}
+                        ) : null))}
                 </div>
             )
             

@@ -5,10 +5,10 @@ import '../styles/navbar.css'
 
 function Navbar(){
     const auth = useAuth();
-    console.log('Full auth object: ', auth)
+    // console.log('Full auth object: ', auth)
     const {isLoggedIn, logout, isLoading, user} = useAuth()
 
-    console.log('Navbar rendering - isLoggedIn:', isLoggedIn, 'isLoading:', isLoading, 'user', user);
+    // console.log('Navbar rendering - isLoggedIn:', isLoggedIn, 'isLoading:', isLoading, 'user', user);
     if (isLoading) {
         return (
             <div className="nav-container">

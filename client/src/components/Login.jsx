@@ -53,6 +53,7 @@ function Login() {
                     onChange={handleChange}
                     required
                     disabled={isLoading}
+                    className='login-inp'
                 />
                 <input
                     type="password"
@@ -63,7 +64,7 @@ function Login() {
                     onChange={handleChange}
                     required
                     disabled={isLoading}
-
+                    className='login-inp'
                 />
                 <button type="submit" disabled={isLoading} className='login-btn'>
                     {isLoading ? 'Logging in...' : 'Login'}

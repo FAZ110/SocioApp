@@ -68,7 +68,7 @@ const toggleLike = async (req, res) => {
             req.params.postId,
             update,
             { new: true }
-        ).populate('likes', 'username');
+        ).populate('author', 'username').populate('likes', 'username');
 
         res.json({
             success: true,

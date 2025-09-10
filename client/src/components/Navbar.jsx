@@ -25,7 +25,7 @@ function Navbar(){
     return (
         <div className="nav-container">
             <div id="logo">
-                <Link to='/'>
+                <Link to='/' className="logo">
                     <p><span>S</span>ocio<span>A</span>pp</p>
                 </Link>
             </div>
@@ -33,16 +33,17 @@ function Navbar(){
             <div className="nav-items">
                 {isLoggedIn ? (
                     <>
-                        <Link to="/feed">Home</Link>
-                        <Link to="/profile">Profile</Link>
+                        <Link to="/feed" className="links">Home</Link>
+                        <Link to={`/profile/${user.username}`} className="links">Profile</Link>
+                        {user.isAdmin ? (<Link to="/controls" className="links">Controls</Link>) : null}
                         <button className="logout-btn" onClick={logout}>
                             Logout
                         </button>
                     </>
                 ) : (
                     <>
-                        <Link to='/login'>Login</Link>
-                        <Link to='/register'>Register</Link>
+                        <Link to='/login'className="links">Login</Link>
+                        <Link to='/register'className="links">Register</Link>
                     </>
                 )}
             </div>

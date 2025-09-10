@@ -167,4 +167,31 @@ const unfollowUser = async (req, res) => {
     }
 }
 
-module.exports = {deleteUser, listUsers, followUser, unfollowUser}
+const getUserProfile = async (req, res) => {
+    try {
+        const user = await User.findOne({username: req.params.username})
+        .select('-password').populate('followers', 'username').populate('following', 'username')
+        
+        if (!user){
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            })
+        }
+
+        res.json({
+            success: true,
+            data: user
+        })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({
+            success: false,
+            message: 'Server Error'
+        })
+        
+    }
+
+}
+
+module.exports = {deleteUser, listUsers, followUser, unfollowUser, getUserProfile}

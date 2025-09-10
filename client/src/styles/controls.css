@@ -1,0 +1,137 @@
+/* Controls.css */
+.controls-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.header h2 {
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.user-count {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.loading, .error, .no-users {
+    text-align: center;
+    padding: 40px;
+    font-size: 18px;
+}
+
+.error {
+    color: #e0245e;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.users-table th,
+.users-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #e1e8ed;
+}
+
+.users-table th {
+    background-color: #1da1f2;
+    color: white;
+    font-weight: bold;
+}
+
+.users-table tr:hover {
+    background-color: #f5f8fa;
+}
+
+.username {
+    font-weight: bold;
+    color: #1da1f2;
+}
+
+.email {
+    color: #657786;
+}
+
+.admin-status {
+    text-align: center;
+}
+
+.admin-badge {
+    background-color: #e0245e;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.user-badge {
+    background-color: #17bf63;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.actions {
+    text-align: center;
+}
+
+.delete-btn {
+    background-color: #e0245e;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.delete-btn:hover {
+    background-color: #c01a4d;
+}
+
+.delete-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .controls-container {
+        padding: 10px;
+    }
+    
+    .users-table {
+        font-size: 14px;
+    }
+    
+    .users-table th,
+    .users-table td {
+        padding: 10px;
+    }
+    
+    .header {
+        padding: 15px;
+    }
+}

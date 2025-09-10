@@ -51,6 +51,7 @@ function Register(){
 
             console.log('Registration successful: ', response.data)
             navigate('/login')
+            
 
             setFormData({
                 username: '',
@@ -85,7 +86,7 @@ function Register(){
 
                     <div className="reg-login-container">
                         <p className="user-message">Already have an account?</p>
-                        <button className="login-button">Login</button>
+                        <button className="login-button" type="button" onClick={() => navigate('/login')}>Login</button>
                     </div>
                 </div>
                 {error && <div className="error-message">{error}</div>}

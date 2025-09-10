@@ -17,8 +17,12 @@ export const AuthProvider = ({children}) => {
             const token = localStorage.getItem('token')
             // console.log('Token found in local storage:', !!token)
             if(token){
-                setUser({token})
-                // console.log('user set in context with token')
+                const decodedToken = JSON.parse(atob(token.split('.')[1]));
+                setUser({
+                    _id: decodedToken.userId,
+                    token: token
+                    // Add other properties if they're in the token
+                });
             }
         } catch (error) {
             // console.error('Auth check failed: ', error)
@@ -32,14 +36,26 @@ export const AuthProvider = ({children}) => {
 
     const login = (userData, token) => {
         localStorage.setItem('token', token)
-        setUser({...userData, token})
+        setUser({
+            _id: userData._id,
+            username: userData.username,
+            email: userData.email,
+            bio: userData.bio,
+            isAdmin: userData.isAdmin,
+            token: token
+        });
     }
+    
+
+    
 
     const logout = () => {
         localStorage.removeItem('token')
         setUser(null);
         window.location.href = '/login'
     }
+
+    
 
     const value = {
         user,

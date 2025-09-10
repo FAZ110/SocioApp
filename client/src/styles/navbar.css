@@ -13,9 +13,10 @@
     align-items: center;
 }
 
-#logo{
-    font-size: 1.4rem;
 
+.logo{
+    color: #fff;
+    font-size: 1.4rem;
 }
 
 #logo span{
@@ -23,11 +24,29 @@
 
 }
 
+.links{
+    color: #fff;
+}
+
+.links:hover{
+    border-bottom: 1px solid #000;
+}
+
 .nav-items{
     /* background-color: beige; */
-    width: 30%;
+    width: 40%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     /* color: #fff; */
+}
+
+.logout-btn{
+    background-color: black;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
 }

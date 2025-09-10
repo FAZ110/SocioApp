@@ -2,6 +2,7 @@ import { useState } from "react"
 import { useAuth } from "../context/AuthContext";
 import API from "../api/api";
 import '../styles/post.css'
+import { Link } from "react-router-dom";
 
 function Post({post, onUpdate}){
     const {user, isLoggedIn} = useAuth()
@@ -57,7 +58,9 @@ function Post({post, onUpdate}){
             <div className="post">
                 
                 <div className="info">
-                <span className="author-username">@{authorUsername}</span>
+                <span className="author-username">
+                    <Link to={`profile/${authorUsername}`}>@{authorUsername}</Link>
+                    </span>
                 <span className="post-date">{formatDate(post.createdAt)}</span>
             </div>
             <div className="content">

@@ -1,4 +1,5 @@
 const Post = require('../models/Post');
+const User = require('../models/User');
 
 
 const createPost = async (req, res) => {
@@ -82,4 +83,35 @@ const toggleLike = async (req, res) => {
     }
 };
 
-module.exports = {createPost, getFeedPosts, toggleLike}
+
+const getUserPosts = async (req, res) => {
+    try {
+        const user = await User.findOne({username: req.params.username})
+        
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: 'User not found'
+            });
+        }
+
+        const posts = await Post.find({author: user._id})
+        .populate('author', 'username')
+        .populate('likes', 'username')
+        .sort({createdAt: -1})
+
+        res.json({
+            success: true,
+            data: posts
+        })
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({
+            success: false,
+            message: 'Server error'
+        });
+        
+    }
+}
+
+module.exports = {createPost, getFeedPosts, toggleLike, getUserPosts}

@@ -1,0 +1,59 @@
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.follow-btn{
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    margin-top: 5px;
+}
+
+.not-following:hover{
+    background-color: greenyellow;
+
+}
+
+.following:hover{
+    background-color: red;
+}
+
+.profile-info{
+    display:flex;
+    flex-direction: column;
+    align-items: start;
+    /* background-color: aqua; */
+    margin-top: 30px;
+}
+
+.stat{
+    display: flex;
+    align-items: center;
+
+    
+}
+
+.stat-number{
+    font-weight: 600;
+    margin: 5px 10px;
+}
+
+.profile-posts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

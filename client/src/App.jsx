@@ -16,6 +16,7 @@ function App() {
       <Router>
         <div className="App">
           <NavBar/>
+          
           <Routes>
             <Route path="/" element={<h1>Welcome to SocioApp!</h1>} />
             <Route path="/feed" element={<Feed />} />

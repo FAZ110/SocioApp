@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import API from "../api/api";
 import Post from './Post'
+import CreatePost from "./CreatePost";
 
 function Feed(){
     const [posts, setPosts] = useState([])
@@ -36,6 +37,10 @@ function Feed(){
         )
     }
 
+    const handlePostCreated = (newPost) => {
+        setPosts(prevPosts => [newPost, ...prevPosts]);
+    };
+
     if (isLoading) return <div className="feed-loading">Loading posts...</div>
 
 
@@ -47,7 +52,9 @@ function Feed(){
 
     const validPosts = posts.filter(post => post && post._id)
     return(
+        
         <div className="feed">
+            <CreatePost onPostCreated={handlePostCreated}/>
             {!isLoggedIn && (
                 <div className="feed-warning">
                     Please log in to interact with posts!!

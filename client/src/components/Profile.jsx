@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import API from "../api/api";
 import "../styles/profile.css"; 
+import Post from "./Post";
 
 function Profile() {
     const { username } = useParams();
@@ -142,18 +143,9 @@ function Profile() {
             <p className="no-posts">No posts yet</p>
             ) : (
             <div className="posts-grid">
-                {userPosts.map(post => (
-                <div key={post._id} className="post-preview">
-                    <p>{post.content}</p>
-                    {post.image && (
-                    <img src={post.image} alt="Post" className="post-image" />
-                    )}
-                    <div className="post-stats">
-                    <span>❤️ {post.likes.length}</span>
-                    <span>💬 {post.comments.length}</span>
-                    </div>
-                </div>
-                ))}
+                {userPosts.map(post => <Post key= {post._id} post= {post}/>
+    
+                )}
             </div>
             )}
         </div>

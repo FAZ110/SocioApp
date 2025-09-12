@@ -8,25 +8,64 @@
 .createPost-container{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
-    border: 2px solid #000;
-    min-width: 300px;
-    max-width: 600px;
-    padding: 20px;
-    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+    background-color: #f9fbfc;
+    min-width: 320px;
+    max-width: 500px;
+    padding: 32px 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(52, 113, 204, 0.08);
+    margin: 24px 0;
+    transition: box-shadow 0.2s;
 
-    
+}
 
+.createPost-container:focus-within {
+    box-shadow: 0 8px 32px rgba(52, 113, 204, 0.15);
+}
+
+.header-CP h3 {
+    margin-bottom: 18px;
+    font-size: 1.3rem;
+    color: #346fcc;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 #content{
     width: 300px;
     height: 100px;
     padding: 5px;
+    font-size: 1rem;
+    resize: vertical;
     
 }
 
+#content:focus {
+    border-color: #346fcc;
+    outline: none;
+}
+
+.input-container {
+    margin-bottom: 18px;
+}
+
+.character-count {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #888;
+    margin-top: 4px;
+}
+
+
+.button-container {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
 .post-btn{
     padding: 5px 20px;
     background-color: #fff;
@@ -36,4 +75,41 @@
     margin: 10px;
     background-color: rgb(52, 113, 204);
     color: #fff;
+}
+
+.post-btn:disabled {
+    background: #b0c4de;
+    cursor: not-allowed;
+}
+
+.post-cancel-btn{
+    padding: 5px 20px;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    background-color: rgb(202, 55, 55);
+    color: #fff;
+
+}
+
+.post-cancel-btn:disabled {
+    background: #e0b4b4;
+    cursor: not-allowed;
+}
+
+
+.wantToPost-btn{
+    padding: 5px 20px;
+    border: 1px solid #e0e0e0;
+    background-color: #fff;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    border-radius: 18px;
+    margin: 20px;
+}
+
+.wantToPost-btn:hover{
+    background-color: #346fcc;
 }

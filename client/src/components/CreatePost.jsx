@@ -69,6 +69,7 @@ function CreatePost({onPostCreated}){
         setContent('')
         setError('')
         setIsLoading(false)
+        setWantToPost(false)
     }
 
     return (
@@ -76,8 +77,6 @@ function CreatePost({onPostCreated}){
         <div className="outer-container">
 
             {wantToPost ? (
-                <button className="wantToPost-btn" onClick={() => handleDecisionChange()} disabled={!isLoggedIn}>{isLoggedIn ? "Create Post" : "Log in to post"}</button>) 
-                : (
             <div className="createPost-container">
                 <div className="header-CP">
                     <h3>Create New Post</h3>
@@ -93,14 +92,16 @@ function CreatePost({onPostCreated}){
                     {error && <div className="error-message">{error}</div>}
                     <div className="button-container">
                         <button className="post-btn" type="submit" disabled={isLoading || !content.trim()}>{isLoading ? "Posting..." : "Post"}</button>
-                        <button className="post-cancel-btn" onClick={handleCancel} type="button" disabled={isLoading}>Cancel Post</button>
+                        <button className="post-cancel-btn" onClick={handleCancel} type="button" disabled={isLoading}>Cancel</button>
                     </div>
 
                 </form>
                 
 
                 
-            </div>)
+            </div>) : (
+                <button className="wantToPost-btn" onClick={() => handleDecisionChange()} disabled={!isLoggedIn}>{isLoggedIn ? "Create Post" : "Log in to post"}</button>) 
+                
             }
         </div>
     );

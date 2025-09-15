@@ -25,6 +25,7 @@ function App() {
             <Route path='/controls' element={<Controls/>}/>
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            
 
           </Routes>
           

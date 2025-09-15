@@ -3,10 +3,12 @@ import { useAuth } from "../context/AuthContext";
 import API from "../api/api";
 import '../styles/post.css'
 import { Link } from "react-router-dom";
+import CommentSection from "./CommentSection";
 
 function Post({post, onUpdate}){
     const {user, isLoggedIn} = useAuth()
     const [isLiking, setIsLiking] = useState(false)
+    const [showComments, setShowComments] = useState(false)
 
     if (!post) {
         return <div className="post">Post not available</div>;
@@ -51,6 +53,14 @@ function Post({post, onUpdate}){
             minute: '2-digit'
         })
     }
+
+    const toggleComments = () => {
+        setShowComments(!showComments)
+    }
+
+    const closeComments = () => {
+        setShowComments(false)
+    }
     
 
     return (
@@ -75,7 +85,9 @@ function Post({post, onUpdate}){
                     {isLiking ? '...' : isPostLiked ? '❤️' : '🤍'}
                     {likeCount > 0 && <span className="like-count">{likeCount}</span>}
                 </button>
-                <button className="comment-btn">Comment</button>
+                <button className="comment-btn" onClick={toggleComments}>Comment</button>
+
+                {showComments && <CommentSection post={post} onClose={closeComments}/>}
             </div>
 
             </div>
